@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { MovieCard } from "../components/MovieCard";
 
 export const Home = () => {
   const [datos, setDatos] = useState([]);
@@ -29,7 +30,13 @@ export const Home = () => {
       <h1>Home</h1>
       <ul>
         {datos.results.map((d) => (
-          <li key={d.id}>{d.title}</li>
+          <MovieCard
+            key={d.id}
+            poster={d.poster_path}
+            title={d.title}
+            vote = {d.vote_average}
+
+          />
         ))}
       </ul>
     </>
