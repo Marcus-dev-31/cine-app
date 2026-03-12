@@ -32,6 +32,7 @@ export const Home = () => {
         {datos.results.map((d) => (
           <MovieCard
             key={d.id}
+            id={d.id}
             poster={d.poster_path}
             title={d.title}
             vote = {d.vote_average}
