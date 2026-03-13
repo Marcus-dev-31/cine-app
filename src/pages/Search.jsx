@@ -5,13 +5,14 @@ import { MovieCard } from "../components/MovieCard";
 export const Search = () => {
   const [inputValue, setInputValue] = useState("");
   const [datos, setDatos] = useState([]);
-  const [cargando, setCargando] = useState(true);
+  const [cargando, setCargando] = useState(false);
   const [error, setError] = useState(null);
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const query = params.get("q");
   const navigate = useNavigate();
+  console.log(navigate);
   
   const handleText = (e) => {
     setInputValue(e.target.value);
@@ -26,6 +27,7 @@ export const Search = () => {
   useEffect(() => {
 
     if (!query) return;
+    setCargando(true);
 
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=es-ES&query=${query}`,
@@ -59,7 +61,7 @@ export const Search = () => {
       <button onClick={handleSearch}>buscar</button>
 
     <ul>
-        {datos.results.map((d) => (
+        {datos.results?.map((d) => (
           <MovieCard
             key={d.id}
             id={d.id}
