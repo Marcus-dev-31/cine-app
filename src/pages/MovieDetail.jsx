@@ -23,7 +23,7 @@ export const MovieDetail = () => {
         setError("No se pudieron cargar las peliculas");
         setCharge(false);
       });
-  }, []);
+  }, [id]);
 
   if (charge) return <p>Cargando...</p>;
   if (error) return <p>{error}</p>;
@@ -32,7 +32,12 @@ export const MovieDetail = () => {
     <>
       <h2>MovieDetail</h2>
       <h3>{date.title}</h3>
+      <img src={`https://image.tmdb.org/t/p/w300${date.poster_path}`} alt={date.title} />
       <p>{date.overview}</p>
+      
+      <p>Puntuacion: {date.vote_average}</p>
+      <p>fecha de estreno: {date.release_date}</p>
+      <p>genero: {date.genres.map((id) => id.name).join(", ")}</p>
     </>
   );
 };

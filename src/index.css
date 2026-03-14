@@ -78,19 +78,7 @@ body {
   min-height: 100vh;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  background-color: var(--color-surface);
-}
-
 a {
   color: var(--color-text);
   text-decoration: none;
-}
-
-main {
-  padding: 2rem;
 }
