@@ -12,8 +12,7 @@ export const Search = () => {
   const params = new URLSearchParams(location.search);
   const query = params.get("q");
   const navigate = useNavigate();
-  console.log(navigate);
-  
+
   const handleText = (e) => {
     setInputValue(e.target.value);
   };
@@ -22,10 +21,7 @@ export const Search = () => {
     navigate(`/buscar?q=${inputValue}`);
   };
 
-  
-
   useEffect(() => {
-
     if (!query) return;
     setCargando(true);
 
@@ -41,38 +37,29 @@ export const Search = () => {
         console.error("Error Completo:", err);
         setError("No se pudieron cargar las peliculas");
         setCargando(false);
-      })
-  }, [query])
-
-  
-  if (cargando) return <p>Cargando...</p>;
-  if (error) return <p>{error}</p>;
-
-  
+      });
+  }, [query]);
 
   return (
     <div>
       <p>Buscando: {query}</p>
-      <input 
-        type="text" 
-        onChange={handleText} 
-        value={inputValue}  
-      />
+      <input type="text" onChange={handleText} value={inputValue} />
       <button onClick={handleSearch}>buscar</button>
 
-    <ul>
+      {cargando && <p>Cargando...</p>}
+      {error && <p>{error}</p>}
+
+      <ul>
         {datos.results?.map((d) => (
           <MovieCard
             key={d.id}
             id={d.id}
             poster={d.poster_path}
             title={d.title}
-            vote = {d.vote_average}
-
+            vote={d.vote_average}
           />
         ))}
       </ul>
-
     </div>
   );
 };

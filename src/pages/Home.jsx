@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../components/MovieCard";
+import styles from "./Home.module.css";
 
 export const Home = () => {
   const [datos, setDatos] = useState([]);
@@ -27,8 +28,7 @@ export const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
-      <ul>
+      <ul className={styles.grid}>
         {datos.results.map((d) => (
           <MovieCard
             key={d.id}
