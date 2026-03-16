@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MovieCard } from "../components/MovieCard";
+import styles from "./Search.module.css";
 
 export const Search = () => {
   const [inputValue, setInputValue] = useState("");
@@ -41,15 +42,27 @@ export const Search = () => {
   }, [query]);
 
   return (
-    <div>
-      <p>Buscando: {query}</p>
-      <input type="text" onChange={handleText} value={inputValue} />
-      <button onClick={handleSearch}>buscar</button>
+    <div className={styles.container}>
+
+      <div className={styles.searchBar}>
+        <input 
+          type="text" 
+          onChange={handleText} 
+          value={inputValue} 
+          className={styles.input} 
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()} 
+        />
+        <button 
+          onClick={handleSearch}
+          className={styles.button}
+        >Buscar</button>
+      </div>
+      
 
       {cargando && <p>Cargando...</p>}
       {error && <p>{error}</p>}
 
-      <ul>
+      <ul className={styles.grid}>
         {datos.results?.map((d) => (
           <MovieCard
             key={d.id}

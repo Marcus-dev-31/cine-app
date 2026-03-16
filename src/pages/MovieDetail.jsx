@@ -39,7 +39,7 @@ export const MovieDetail = () => {
         <div className={styles.info}>
           <h3 className={styles.title}>{date.title}</h3>
           <p className={styles.genres}>{date.genres.map((id) => id.name).join(", ")}</p>
-          <p className={styles.meta}>⭐{date.vote_average}</p>
+          <p className={styles.meta}>⭐{Number(date.vote_average).toFixed(1)}</p>
           <p className={styles.meta}>{date.release_date}</p>
           <p className={styles.overview}>{date.overview}</p>
         </div>
