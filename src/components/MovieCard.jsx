@@ -21,7 +21,9 @@ export const MovieCard = ({ poster, title, vote, id }) => {
       />
       <div className={styles.info}>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.vote}>{vote || "Sin puntuación"}</p>
+        <p className={styles.vote}>
+          {vote ? Number(vote).toFixed(1) : "Sin puntuación"}
+        </p>
       </div>
     </article>
   );
